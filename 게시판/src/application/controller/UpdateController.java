@@ -43,8 +43,9 @@ public class UpdateController {
     BoardService boardService = new BoardServiceImpl();
     Board board = new Board();
     
+    // 뒤로가기 버튼
     @FXML
-    void toList(ActionEvent event) throws IOException {
+    void toRead(ActionEvent event) throws IOException {
 		// ReadController 가져오기
 		FXMLLoader ReadFXML = new FXMLLoader(getClass().getResource("/application/UI/Read.fxml"));
 		Parent readRoot = ReadFXML.load();
@@ -59,6 +60,7 @@ public class UpdateController {
 		Main.setRoot(readRoot);
     }
 
+    // 수정 기능 구현
     @FXML
     void update(ActionEvent event) throws IOException {
     	board.setTitle(outTitle.getText());
@@ -68,6 +70,7 @@ public class UpdateController {
     	Main.setRoot("UI/List");
     }
 
+    // UI 출력
     public void passData(int no) {
     	this.no= no;
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

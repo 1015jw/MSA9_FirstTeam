@@ -53,7 +53,8 @@ public class ListController {
 	@FXML
 	void comboChange(ActionEvent event) {
 	}
-
+	
+	// 메뉴 버튼
 	@FXML
 	void toMenu(ActionEvent event) throws IOException {
 		Main.setRoot("UI/Main");

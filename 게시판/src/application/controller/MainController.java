@@ -16,6 +16,7 @@ public class MainController {
     @FXML
     private Button btnList;
 
+    // 종료 버튼
     @FXML
     void exit(ActionEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
