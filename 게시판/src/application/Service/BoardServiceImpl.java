@@ -1,7 +1,6 @@
 package application.Service;
 
 import java.util.List;
-
 import application.DAO.BoardDAO;
 import application.DTO.Board;
 
