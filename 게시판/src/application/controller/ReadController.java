@@ -3,12 +3,19 @@ package application.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 import application.Main;
+import application.Service.BoardService;
+import application.Service.BoardServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ReadController {
 
@@ -32,14 +39,32 @@ public class ReadController {
     
     @FXML
     private Label outView;
-
-
-
+    
+    static int no;
+    BoardService boardService = new BoardServiceImpl();
+    
     //리스트 클릭시 화면전환
     @FXML
     void toList(ActionEvent event) throws IOException{
     	Main.setRoot("UI/List");
     }
+    @FXML
+    void delete(ActionEvent event) throws IOException {
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("삭제");
+    	alert.setHeaderText("정말 삭제하시겠습니까?");
+    	alert.setContentText("확인 버튼을 누르면 삭제됩니다.");
+    	Optional<ButtonType> result = alert.showAndWait();
+    	if (result.get() == ButtonType.OK){
+    		boardService.delete(no);
+    		Main.setRoot("UI/List");
+    	}
+    }
+    @FXML
+    void toUpdate(ActionEvent event) throws IOException {
+    	Main.setRoot("UI/Update");
+    }
+    
     
     //출력
     public void passDataTitle(String data) {
@@ -52,6 +77,7 @@ public class ReadController {
 		outContent.setText(data);;
 	}
     public void passDataNo(int data) {
+    	no = data;
 		outNo.setText("No. "+data);;
 	}
     public void passDataReg(Date reg) {
@@ -66,8 +92,5 @@ public class ReadController {
 	}
 	public void passDateView(int view) {
 		outView.setText("조회수 : " + view);
-		
-		
 	}
-
 }
