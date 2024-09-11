@@ -10,6 +10,8 @@ import application.Service.BoardService;
 import application.Service.BoardServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -40,7 +42,7 @@ public class ReadController {
     @FXML
     private Label outView;
     
-    static int no;
+    int no;
     BoardService boardService = new BoardServiceImpl();
     
     //리스트 클릭시 화면전환
@@ -62,23 +64,29 @@ public class ReadController {
     }
     @FXML
     void toUpdate(ActionEvent event) throws IOException {
-    	Main.setRoot("UI/Update");
+		// ReadController 가져오기
+		FXMLLoader updateFxml = new FXMLLoader(getClass().getResource("/application/UI/Update.fxml"));
+		Parent updateRoot = updateFxml.load();
+		UpdateController update = updateFxml.getController();
+		//데이터를 Read컨트롤러로 전달
+		update.passData(no);
+		Main.setRoot(updateRoot);
     }
     
     
     //출력
     public void passDataTitle(String data) {
-		outTitle.setText(data);;
+		outTitle.setText(data);
 	}
     public void passDataWriter(String data) {
-		outWriter.setText(data);;
+		outWriter.setText(data);
 	}
     public void passDataContent(String data) {
-		outContent.setText(data);;
+		outContent.setText(data);
 	}
     public void passDataNo(int data) {
     	no = data;
-		outNo.setText("No. "+data);;
+		outNo.setText("No. "+data);
 	}
     public void passDataReg(Date reg) {
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -88,7 +96,7 @@ public class ReadController {
 	public void passDataUpd(Date upd) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String str = format.format(upd);
-    	outReg.setText(str);
+    	outUpd.setText(str);
 	}
 	public void passDateView(int view) {
 		outView.setText("조회수 : " + view);

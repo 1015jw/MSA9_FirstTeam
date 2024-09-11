@@ -138,7 +138,7 @@ public class BoardDAO extends JDBConnection{
 				+ "SET title = ?"
 				+ ",writer = ?"
 				+ ",content = ?"
-//				+ ",upd_date = now()"
+				+ ",upd_date = now()"
 				+ "WHERE no = ?";
 		
 		try {

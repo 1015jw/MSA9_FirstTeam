@@ -54,6 +54,11 @@ public class ListController {
 	void comboChange(ActionEvent event) {
 	}
 
+	@FXML
+	void toMenu(ActionEvent event) throws IOException {
+		Main.setRoot("UI/Main");
+	}
+	
 	// 검색 버튼
 	@FXML
 	void search(ActionEvent event) {

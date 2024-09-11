@@ -33,12 +33,12 @@
       </Label>
       <Label fx:id="outView" layoutX="856.0" layoutY="4.0" prefHeight="36.0" prefWidth="74.0" text="조회수 :  0" />
       <Label layoutX="671.0" layoutY="76.0" prefHeight="22.0" prefWidth="49.0" text="등록일자" />
-      <Button alignment="CENTER" layoutX="578.0" layoutY="564.0" mnemonicParsing="false" onAction="#toList" prefHeight="52.0" prefWidth="117.0" text="리스트">
+      <Button alignment="CENTER" layoutX="578.0" layoutY="564.0" mnemonicParsing="false" onAction="#toList" prefHeight="52.0" prefWidth="117.0" text="뒤로">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="728.0" layoutY="564.0" mnemonicParsing="false" onAction="#update" prefHeight="52.0" prefWidth="117.0" text="수정">
+      <Button alignment="CENTER" layoutX="728.0" layoutY="564.0" mnemonicParsing="false" onAction="#update" prefHeight="52.0" prefWidth="117.0" text="완료">
          <font>
             <Font size="18.0" />
          </font>
