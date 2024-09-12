@@ -33,5 +33,6 @@ public class InsertController {
         BoardService service = new BoardServiceImpl();
         service.insert(board);
         Main.setRoot("UI/List");
+        
     }
 }
