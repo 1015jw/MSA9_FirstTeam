@@ -1,4 +1,4 @@
-module TeamQ {
+module 게시판 {
 		requires javafx.controls;
 		requires javafx.fxml;
 		requires javafx.base;
