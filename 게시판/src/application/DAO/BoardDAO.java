@@ -59,6 +59,54 @@ public class BoardDAO extends JDBConnection{
 		
 		return boardList;
 	}
+	
+	public List<Board> search(String keyword, String subject) {
+		// 겍시글 목록을 담을 컬렉션 객체 생성
+		List<Board> boardList = new ArrayList<Board>();
+		
+		// SQL 작성
+		String sql = " SELECT * "
+					+ " FROM board "
+					+ " where " + subject + " like ?";
+		
+		try {
+			
+			// SQL 실행 객체 생성 - PreparedStatement (psmp)
+			psmt = con.prepareStatement(sql);
+			
+			// ? 동적 파라미터 바인딩
+			// * psmt.setXXX( 순서번호, 매필할 값)
+			psmt.setString(1, "%"+keyword+"%");		// 1번째 ? 파라미터에 매필
+			
+			// SQL 실행 요청
+			rs = psmt.executeQuery();
+			// 3. 조회된 결과를 리스트(boardList)에 추가
+			while( rs.next()) {		// next() : 조회 결과의 다음데이터로 이동
+				Board board = new Board();
+				
+				// 결과 데이터 가져오기
+				// rs.getXXX("컬럼명")	: 해당 컬럼의 데이터를 반환
+				board.setNo( rs.getInt("no"));
+				board.setTitle( rs.getString("title"));
+				board.setWriter( rs.getString("writer"));
+				board.setContent( rs.getString("content"));
+				board.setRegDate( rs.getTimestamp("reg_date"));
+				board.setUpdDate( rs.getTimestamp("upd_date"));
+				
+				// 검색 목록 추가
+				boardList.add(board);
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("게시글 검색 시, 예외 발생");
+			e.printStackTrace();
+		}
+		
+		// 검색 목록 반환
+		
+		return boardList;
+	}
 
 	/**
 	 * 데이터 조회

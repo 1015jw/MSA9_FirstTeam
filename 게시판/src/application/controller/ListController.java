@@ -63,7 +63,14 @@ public class ListController {
 	// 검색 버튼
 	@FXML
 	void search(ActionEvent event) {
-
+		String subject;
+		if(comboBox.getValue()=="작성자")
+			subject="writer";
+		else
+			subject="title";
+		boardList = boardService.search(keyWord.getText(),subject);
+		ObservableList<Board> list = FXCollections.observableArrayList(boardList);
+		boardTableView.setItems(list);
 	}
 
 	List<Board> boardList = null;
