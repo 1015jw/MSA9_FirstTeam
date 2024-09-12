@@ -69,7 +69,7 @@ public class BoardServiceImpl implements BoardService{
 		return boardList;
 	}
 
-	@Override
+
 	public int plusView(int no) {
 		int result = boardDAO.plusView(no);
 		if( result > 0) System.out.println("조회수 증가 성공");

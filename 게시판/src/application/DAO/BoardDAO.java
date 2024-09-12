@@ -94,6 +94,7 @@ public class BoardDAO extends JDBConnection{
 				board.setRegDate( rs.getTimestamp("reg_date"));
 				board.setUpdDate( rs.getTimestamp("upd_date"));
 				board.setView(rs.getInt("View"));
+
 				
 				// 검색 목록 추가
 				boardList.add(board);
