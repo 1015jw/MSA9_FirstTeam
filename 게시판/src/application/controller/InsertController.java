@@ -6,12 +6,13 @@ import application.Service.BoardService;
 import application.Service.BoardServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class InsertController {
 
     @FXML
-    private TextField contentBox;
+    private TextArea contentBox;
 
     @FXML
     private TextField titleBox;
@@ -28,8 +29,8 @@ public class InsertController {
     void insert(ActionEvent event) throws Exception {
         Board board = new Board();
         board.setTitle(titleBox.getText());
-        board.setWriter(titleBox.getText());
-        board.setContent(titleBox.getText());
+        board.setWriter(writerBox.getText());
+        board.setContent(contentBox.getText());
         BoardService service = new BoardServiceImpl();
         service.insert(board);
         Main.setRoot("UI/List");
