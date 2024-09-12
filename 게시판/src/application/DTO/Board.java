@@ -28,7 +28,7 @@ public class Board {
 	private String content;
 	private Date regDate;
 	private Date updDate;
-	private int view;
+	private int View;
 	
 	public Board() {
 		this("(제목없음)", "(작성자없음)", "");
