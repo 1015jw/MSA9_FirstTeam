@@ -113,6 +113,9 @@ public class ListController {
 				if (event.getClickCount() == 2 && boardTableView.getSelectionModel().getSelectedItem() != null) {
 					try {
 						Board board = boardTableView.getSelectionModel().getSelectedItem();
+						
+						BoardService service = new BoardServiceImpl();
+						service.plusView(board.getNo());
 
 						int no = board.getNo();
 						String title = board.getTitle();
@@ -120,11 +123,12 @@ public class ListController {
 						String content = board.getContent();
 						Date reg = board.getRegDate();
 						Date upd = board.getUpdDate();
+						int view = board.getView();
 
-						System.out.println(no);
-						System.out.println(title);
-						System.out.println(writer);
-						System.out.println(content);
+//						System.out.println(no);
+//						System.out.println(title);
+//						System.out.println(writer);
+//						System.out.println(content);
 
 						// Read.fxml 로드
 						// FXMLLoader loader = new FXMLLoader();
@@ -140,6 +144,7 @@ public class ListController {
 						read.passDataNo(no);
 						read.passDataReg(reg);
 						read.passDataUpd(upd);
+						read.passDateView(view);
 						
 						/*
 						int view = board.getView();
@@ -153,6 +158,9 @@ public class ListController {
 						
 						//주소 테스트
 						//System.out.println(getClass().getResource("/application/UI/Read.fxml"));
+						
+						 
+						
 						Main.setRoot(readRoot);
 
 					} catch (Exception e) {

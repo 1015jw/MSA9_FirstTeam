@@ -44,6 +44,7 @@ public class BoardDAO extends JDBConnection{
 				board.setContent( rs.getString("content"));
 				board.setRegDate( rs.getTimestamp("reg_date"));
 				board.setUpdDate( rs.getTimestamp("upd_date"));
+				board.setView(rs.getInt("View"));
 				
 				// 게시글 목록 추가
 				boardList.add(board);
@@ -92,6 +93,8 @@ public class BoardDAO extends JDBConnection{
 				board.setContent( rs.getString("content"));
 				board.setRegDate( rs.getTimestamp("reg_date"));
 				board.setUpdDate( rs.getTimestamp("upd_date"));
+				board.setView(rs.getInt("View"));
+
 				
 				// 검색 목록 추가
 				boardList.add(board);
@@ -178,7 +181,28 @@ public class BoardDAO extends JDBConnection{
 		
 		return result;
 	}
+	
+	public int plusView(int no) {
+		int result = 0;
+		String sql = "UPDATE board SET view = view + 1 WHERE no = ?";
 
+		
+		try {
+			psmt = con.prepareStatement(sql);			// 쿼리 실행 객체 생성
+			psmt.setInt(1,	no);
+			result = psmt.executeUpdate();				//	SQL 실행 요청
+			// * executeUpdate()
+			// SQL (INSERT, UPDATE, DELETE) 실행 시 적용된 데이터 개수를 int 타입으로 받아온다.
+			// ex) 게시글 1개 적용 성공 시, result 1
+			//					실패 시, result : 0
+		} catch (SQLException e) {
+			System.err.println("조회수 증가시, 예외 발생");
+			//e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
 	public int update(Board board) {
 		int result = 0;
 		
