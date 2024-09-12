@@ -26,4 +26,6 @@ public interface BoardService {
 	int update(Board board);
 	//게시글 삭제
 	int delete(int no);
+	//게시글 검색
+	List<Board> search(String keyword, String subject);
 }

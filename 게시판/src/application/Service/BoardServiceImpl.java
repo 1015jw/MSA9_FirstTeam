@@ -62,5 +62,12 @@ public class BoardServiceImpl implements BoardService{
 		return result;
 	}
 
+	@Override
+	public List<Board> search(String keyword, String subject) {
+		List<Board> boardList = boardDAO.search(keyword, subject);
+		// 게시글 목록 데이터 반환
+		return boardList;
+	}
+
 	
 }

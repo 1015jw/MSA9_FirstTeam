@@ -53,11 +53,24 @@ public class ListController {
 	@FXML
 	void comboChange(ActionEvent event) {
 	}
-
+	
+	// 메뉴 버튼
+	@FXML
+	void toMenu(ActionEvent event) throws IOException {
+		Main.setRoot("UI/Main");
+	}
+	
 	// 검색 버튼
 	@FXML
 	void search(ActionEvent event) {
-
+		String subject;
+		if(comboBox.getValue()=="작성자")
+			subject="writer";
+		else
+			subject="title";
+		boardList = boardService.search(keyWord.getText(),subject);
+		ObservableList<Board> list = FXCollections.observableArrayList(boardList);
+		boardTableView.setItems(list);
 	}
 
 	List<Board> boardList = null;
