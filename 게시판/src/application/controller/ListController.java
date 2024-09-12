@@ -116,6 +116,7 @@ public class ListController {
 						
 						BoardService service = new BoardServiceImpl();
 						service.plusView(board.getNo());
+						board = service.select(board.getNo());
 
 						int no = board.getNo();
 						String title = board.getTitle();
