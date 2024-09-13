@@ -20,6 +20,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import application.controller.*;
 
@@ -168,6 +170,21 @@ public class ListController {
 						System.err.println("읽기 에러 " + e.getMessage());
 					}
 
+				}
+			}
+		});
+		keyWord.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode()==KeyCode.ENTER) {
+					String subject;
+					if(comboBox.getValue()=="작성자")
+						subject="writer";
+					else
+						subject="title";
+					boardList = boardService.search(keyWord.getText(),subject);
+					ObservableList<Board> list = FXCollections.observableArrayList(boardList);
+					boardTableView.setItems(list);
 				}
 			}
 		});
